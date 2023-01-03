@@ -8,13 +8,15 @@ Education : The highest level of formal education obtained by the employee ;
  PaymentTier : [1:3] -> 1 means better payment ; trasformo [1,2,3] in [3,2,1]
  Age : Age of the employee ; [22, ..., 41]
  Gender : Gender of the employee ; trasformo [Male, Female] in [0, 1]
- EverBenched : Ever kept out of project for more than one month ; trasformo [No, Yes] in [0, 1]
+ EverBenched : Ever kept out of project for more than one month ;
+   trasformo [No, Yes] in [0, 1]
  ExperienceInCurrentDomain : Experience in current field ; [0, ..., 7]
 """
 
-import pandas as pd
-import numpy as np
+# import pandas as pd
+# import numpy as np
 import MachineLearning as ml
+
 
 def transform_city(city):
     if city == "Bangalore":
@@ -26,6 +28,7 @@ def transform_city(city):
     else:
         return 1
 
+
 def transform_education(education):
     if education == "Bachelor":
         return 1
@@ -36,6 +39,7 @@ def transform_education(education):
     else:
         return 1
 
+
 def transform_ever_benched(ever_benched):
     if ever_benched == "No":
         return 0
@@ -44,6 +48,7 @@ def transform_ever_benched(ever_benched):
     else:
         return 0
 
+
 def transform_gender(gender):
     if gender == "Male":
         return 0
@@ -51,6 +56,7 @@ def transform_gender(gender):
         return 1
     else:
         return 0
+
 
 def transform_payment_tier(payment_tier):
     if payment_tier == 3:
@@ -62,8 +68,12 @@ def transform_payment_tier(payment_tier):
     else:
         return 1
 
-def predict(education, joining_year, city, payment_tier, age, gender, ever_benched, experience):
-    leave_or_not = ml.predict(education, joining_year, city, payment_tier, age, gender, ever_benched, experience)
+
+def predict(education, joining_year, city, payment_tier, age, gender,
+            ever_benched, experience):
+    leave_or_not = ml.predict(education, joining_year, city, payment_tier,
+                              age, gender, ever_benched, experience)
     return leave_or_not
 
-#roba per connettività col server?
+
+# roba per connettività col server?
