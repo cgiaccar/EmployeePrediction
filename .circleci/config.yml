@@ -15,7 +15,8 @@ jobs:
           name: Run tests
           command: |
             cd PythonCode
-            python Test.py
+            python TestBackEnd.py
+            python TestML.py
 
 workflows:
   sample:
