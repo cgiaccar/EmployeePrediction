@@ -13,9 +13,11 @@ import numpy as np
 # from sklearn.ensemble import RandomForestClassifier
 import pickle
 # from xgboost import XGBClassifier
+import os
 
 
-filename = 'model_xgb.pkl'
+path = os.path.dirname(os.path.dirname(__file__))
+filename = path+'/Models/model_xgb.pkl'
 
 rf_model = pickle.load(open(filename, 'rb'))
 
