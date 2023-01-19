@@ -71,9 +71,9 @@ def transform_payment_tier(payment_tier):
 
 def predict(education, joining_year, city, payment_tier, age, gender,
             ever_benched, experience):
-    leave_or_not = ml.predict(education, joining_year, city, payment_tier,
+    will_leave = ml.predict(education, joining_year, city, payment_tier,
                               age, gender, ever_benched, experience)
-    return leave_or_not
+    return will_leave
 
 
 # roba per connettività col server?

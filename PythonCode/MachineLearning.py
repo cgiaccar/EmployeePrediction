@@ -24,17 +24,17 @@ rf_model = pickle.load(open(filename, 'rb'))
 
 def predict(education, joining_year, city, payment_tier, age, gender,
             ever_benched, experience):
-    leave_or_not = None
+    will_leave = None
     input_values = np.array([education, joining_year, city, payment_tier, age,
                              gender, ever_benched, experience], ndmin=2)
     # input values non è un vettore, ma una matrice con una riga;
     # è una distinzione importante per predict
     output_value = rf_model.predict(input_values)
     if output_value[0] == 1:
-        leave_or_not = True
+        will_leave = True
     else:
-        leave_or_not = False
-    # print(leave_or_not) #debug
-    return leave_or_not
+        will_leave = False
+    # print(will_leave) #debug
+    return will_leave
 
 # predict(1, 2014, 3, 2, 37, 1, 0, 5) #debug
