@@ -14,7 +14,7 @@ jobs:
       - run:
           name: Run tests
           command: |
-            cd PythonCode
+            cd PythonCode/Test
             python TestBackEnd.py
             python TestML.py
 

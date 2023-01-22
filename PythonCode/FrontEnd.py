@@ -64,19 +64,21 @@ if 'progress' not in st.session_state:
     st.session_state['ever_benched'] = 0
     st.session_state['experience'] = 0
 
-#st.write('progress = ', st.session_state['progress']) #debug
+# st.write('progress = ', st.session_state['progress']) #debug
 
 
-#mettere immagine di sfondo:
+# mettere immagine di sfondo:
 path = os.path.dirname(os.path.dirname(__file__))
-image_file = path+'/crystalball_semitransparent.png'
-#image comes from https://commons.wikimedia.org/wiki/File:744-crystal-ball-2.svg
-#license: creative commons 4.0
+image_file = path+'/Assets/crystalball_semitransparent.png'
+# image comes from https://commons.wikimedia.org/wiki/File:744-crystal-ball-2.svg
+# license: creative commons 4.0
+
+
 def add_bg_from_local(image):
     with open(image, "rb") as image:
         encoded_string = base64.b64encode(image.read())
     st.markdown(
-    f"""
+        f"""
     <style>
     .stApp {{
         background-image: url(data:image/{"png"};base64,{encoded_string.decode()});
@@ -87,20 +89,23 @@ def add_bg_from_local(image):
     }}
     </style>
     """,
-    unsafe_allow_html=True
+        unsafe_allow_html=True
     )
-add_bg_from_local(image_file) 
+
+
+add_bg_from_local(image_file)
 
 
 if st.session_state['progress'] == 0:
-    st.subheader('Hello! With this tool you will be able to see if you or an employee working for your company will leave in 2 years or less.')
+    st.subheader(
+        'Hello! With this tool you will be able to see if you or an employee working for your company will leave in 2 years or less.')
     st.write('**Just take our quiz and let the magic begin!**')
     begin = st.button("Begin!")
     if begin:
         if st.session_state['progress'] < 1:
             st.session_state['progress'] = 1
-            #experimental_rerun reruns the script from the top
-            #using the updated session_state
+            # experimental_rerun reruns the script from the top
+            # using the updated session_state
             st.experimental_rerun()
 
 if st.session_state['progress'] == 1:
@@ -111,8 +116,8 @@ if st.session_state['progress'] == 1:
     select_age = st.selectbox('Select age', possible_ages)
     st.write('You selected ', select_age)
     result = select_age
-    confirm = st.button('Next', 1) #1 è la key del bottone, che altrimenti
-    #verrebbe generata in base al contenuto.
+    confirm = st.button('Next', 1)  # 1 è la key del bottone, che altrimenti
+    # verrebbe generata in base al contenuto.
     if confirm and result >= 18:
         st.session_state['age'] = result
         st.session_state['progress'] += 1
@@ -129,7 +134,8 @@ if st.session_state['progress'] == 2:
         st.experimental_rerun()
 
 if st.session_state['progress'] == 3:
-    select_city = st.selectbox('Select City', ('Bangalore', 'New Delhi', 'Pune'))
+    select_city = st.selectbox(
+        'Select City', ('Bangalore', 'New Delhi', 'Pune'))
     st.write('You selected ', select_city)
     result = select_city
     confirm = st.button('Next', 3)
@@ -139,7 +145,8 @@ if st.session_state['progress'] == 3:
         st.experimental_rerun()
 
 if st.session_state['progress'] == 4:
-    select_education = st.selectbox('Select Education', ('Bachelor', 'Master', 'PHD'))
+    select_education = st.selectbox(
+        'Select Education', ('Bachelor', 'Master', 'PHD'))
     st.write('You selected ', select_education)
     result = select_education
     confirm = st.button('Next', 4)
@@ -159,7 +166,7 @@ if st.session_state['progress'] == 5:
     confirm = st.button('Next', 5)
     if confirm:
         st.session_state['joining_year'] = result
-        st.session_state['progress'] += 1  
+        st.session_state['progress'] += 1
         st.experimental_rerun()
 
 if st.session_state['progress'] == 6:
@@ -202,14 +209,16 @@ if st.session_state['progress'] == 8:
         st.experimental_rerun()
 
 if st.session_state['progress'] == 9:
-    #st.write(st.session_state['education'], st.session_state['joining_year'], st.session_state['city'], st.session_state['payment_tier'],
+    # st.write(st.session_state['education'], st.session_state['joining_year'], st.session_state['city'], st.session_state['payment_tier'],
     #                    st.session_state['age'], st.session_state['gender'], st.session_state['ever_benched'], st.session_state['experience']) #debug
     will_leave = b.predict(st.session_state['education'], st.session_state['joining_year'], st.session_state['city'], st.session_state['payment_tier'],
-                        st.session_state['age'], st.session_state['gender'], st.session_state['ever_benched'], st.session_state['experience'])
+                           st.session_state['age'], st.session_state['gender'], st.session_state['ever_benched'], st.session_state['experience'])
     if will_leave:
-        st.subheader('**WATCH OUT! Our prediction says that, in two years, the employee WILL LEAVE the company!!!**')
+        st.subheader(
+            '**WATCH OUT! Our prediction says that, in two years, the employee WILL LEAVE the company!!!**')
     else:
-        st.subheader('**Our prediction says that, probably, the employee will NOT leave the company for the next two years.**')
+        st.subheader(
+            '**Our prediction says that, probably, the employee will NOT leave the company for the next two years.**')
     back_button = st.button("Retake the Quiz!")
     if back_button:
         st.session_state['progress'] = 0
