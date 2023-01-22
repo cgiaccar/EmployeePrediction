@@ -1,32 +1,13 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """
-Created on Mon Dec 26 12:23:18 2022
+The questions are changed using the session_state variable 'progress'
 
-@author: lollo
+BackEnd.py is called to transform the user inputs (when necessary)
+ and to predict the final result
 """
-
-# Elenco delle features
-
-# Education : The highest level of formal education obtained by the employee ;
-#   trasformo [Bachelor, Master, PHD] in [1, 2, 3]
-# JoiningYear : Year of joining the company ; [2012, ..., 2018]
-# City : Job Location ; trasformo [Bangalore, New Delhi, Pune] in [1, 2, 3]
-# PaymentTier : [1:3] -> 1 means better payment ; trasformo [1,2,3] in [3,2,1]
-# Age : Age of the employee ; [22, ..., 41]
-# Gender : Gender of the employee ; trasformo [Male, Female] in [0, 1]
-# EverBenched : Ever kept out of project for more than one month ;
-#   trasformo [No, Yes] in [0, 1]
-# ExperienceInCurrentDomain : Experience in current field ; [0, ..., 7]
 
 import streamlit as st
 import os
 import base64
-# import tkinter as tk
-# from tkinter import ttk
-# from tkinter.messagebox import showinfo
-# tkinter serve per listbox
-
 import BackEnd as b
 
 # default values to avoid program crashing
@@ -42,10 +23,10 @@ import BackEnd as b
 st.title("EmployeePrediction")
 
 if 'progress' not in st.session_state:
-    # progress indica a quale domanda stai rispondendo.
-    # 0 significa che il test non è ancora iniziato.
-    # 9 significa che è stato completato.
-    # ordine delle domande —
+    # progress stores which question is being answered.
+    # 0 means the test has not been started yet.
+    # 9 means the test has been completed.
+    # questions order —
     # 1. Age
     # 2. Gender
     # 3. City
@@ -67,7 +48,7 @@ if 'progress' not in st.session_state:
 # st.write('progress = ', st.session_state['progress']) #debug
 
 
-# mettere immagine di sfondo:
+# Background image loading:
 path = os.path.dirname(os.path.dirname(__file__))
 image_file = path+'/Assets/crystalball_semitransparent.png'
 # image comes from https://commons.wikimedia.org/wiki/File:744-crystal-ball-2.svg
@@ -116,8 +97,8 @@ if st.session_state['progress'] == 1:
     select_age = st.selectbox('Select age', possible_ages)
     st.write('You selected ', select_age)
     result = select_age
-    confirm = st.button('Next', 1)  # 1 è la key del bottone, che altrimenti
-    # verrebbe generata in base al contenuto.
+    # 1 is the button key, otherwise generated based on the content
+    confirm = st.button('Next', 1)
     if confirm and result >= 18:
         st.session_state['age'] = result
         st.session_state['progress'] += 1

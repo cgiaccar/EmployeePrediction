@@ -1,18 +1,9 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 """
-Created on Mon Dec 26 12:49:45 2022
-
-@author: lollo
+Loading and use of the machine learning model
 """
 
-# import pandas as pd
 import numpy as np
-# from sklearn.model_selection import cross_val_score
-# from sklearn.model_selection import GridSearchCV
-# from sklearn.ensemble import RandomForestClassifier
 import pickle
-# from xgboost import XGBClassifier
 import os
 
 
@@ -34,7 +25,4 @@ def predict(education, joining_year, city, payment_tier, age, gender,
         will_leave = True
     else:
         will_leave = False
-    # print(will_leave) #debug
     return will_leave
-
-# predict(1, 2014, 3, 2, 37, 1, 0, 5) #debug

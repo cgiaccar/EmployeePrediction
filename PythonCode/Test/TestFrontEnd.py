@@ -1,7 +1,7 @@
 """
 System testing for the right execution of the app (FrontEnd)
 
-As for now it's not working.
+As for now it's NOT WORKING.
 Included in the project to save the progress for future reference.
 """
 

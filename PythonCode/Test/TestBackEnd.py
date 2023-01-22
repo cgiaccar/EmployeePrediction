@@ -1,7 +1,7 @@
 """
 Unit testing of the methods in BackEnd
 
-The Transform methods are if/then/else only, so the unit testing is actually
+The transform methods are if/then/else only, so the unit testing is actually
  unnecessary, but this can change in time
 """
 
